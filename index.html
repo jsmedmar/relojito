@@ -119,7 +119,7 @@
                     if (this.currentReps + this.reps <= this.maxReps) {
                         currentPlayer = this.i % this.players || this.players;
                         this.playerReps[currentPlayer] = (this.playerReps[currentPlayer] || 0) + this.currentReps;
-                        this.consoleText += `Player ${currentPlayer}, Current Reps: ${this.currentReps}, Player Reps: ${this.playerReps[currentPlayer]}\n`;
+                        this.consoleText += `Player ${currentPlayer}, Reps: ${this.currentReps}, Total: ${this.playerReps[currentPlayer]}\n`;
                         this.currentReps += this.reps;
                         this.i++;
                     } else if (!this.finished) {
