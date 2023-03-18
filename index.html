@@ -85,7 +85,8 @@
 
                 <h3>Totals Reps:</h3>
                 <ul>
-                    <li v-for="player in players" :key="player">
+                    <li v-for="player in Object.keys(playerReps).length < players ? players : Object.keys(playerReps)"
+                        :key="player">
                         Player {{ player }}: {{ getPlayerReps(player) }}
                     </li>
                 </ul>
