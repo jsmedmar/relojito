@@ -71,24 +71,28 @@
                     currentIteration: 1,
                     currentPlayer: 1,
                     currentReps: 0,
-                    playerStats: {}
+                    playerStats: {},
+                    finished: false
                 };
             },
             methods: {
                 next() {
+                    if (this.finished) return
+
                     if (this.currentReps + this.reps > this.total) {
                         this.output += `\nTotal repetitions by each player:\n`;
                         for (const player in this.playerStats) {
                             this.output += `Player ${player}: ${this.playerStats[player]}\n`;
                         }
                         this.output += `Total repetitions: ${this.currentReps}`;
+                        this.finished = true
                         return;
                     }
 
                     this.currentReps += this.reps;
                     this.playerStats[this.currentPlayer] = (this.playerStats[this.currentPlayer] || 0) + this.reps;
 
-                    this.output += `\nIteration ${this.currentIteration} | Player ${this.currentPlayer} | Reps: ${this.reps} | Player Total: ${this.playerStats[this.currentPlayer]}`;
+                    this.output += `\nIteration ${this.currentIteration} | Player ${this.currentPlayer} | Reps: ${this.currentReps} | Player Total: ${this.playerStats[this.currentPlayer]}`;
 
                     this.currentPlayer = (this.currentPlayer % this.players) + 1;
                     this.currentIteration++;
@@ -103,6 +107,7 @@
                     this.currentPlayer = 1
                     this.currentReps = 0
                     this.playerStats = {}
+                    this.finished = false
                 }
               }
         });
